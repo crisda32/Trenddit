@@ -1,0 +1,61 @@
+/*----FONTS----*/
+@font-face{
+    font-family: 'Brandone Grotesque Regular';
+    src: url('../../../assets/Fonts/Brandone/Brandon_reg.otf');
+    font-weight: normal;
+}
+
+:focus {outline:none;}
+::-moz-focus-inner {border:0;}
+
+.GeneralButton{
+    display: block;
+    position: relative;
+    font-family: 'Brandone Grotesque Regular';
+    font-size: 5.6vw;
+    margin-bottom: 8%;
+    min-height: 50px;
+    width: 40vw;
+    height: 7vh;
+    left: 50%;
+    margin-left: -20vw;
+    border-radius: 40px;
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.GeneralButton:hover,
+.GeneralButton:focus{
+    box-shadow: 5px 8px 18px #888888;
+}
+
+.White{
+    color: #00C68F;
+    background-color: white;
+    border: 3px solid #00C68F;
+}
+
+.Green{
+    color: white;
+    background: linear-gradient(to right, #00C68F, #C8F1D4);
+    border: transparent;
+}
+
+.Green:hover{
+    background: linear-gradient(to right, rgb(93, 209, 176), #C8F1D4);
+}
+
+.Blue{
+
+}
+
+/*----MEDIA QUERYS----*/
+@media screen and (min-width: 600px){
+    .GeneralButton{
+        font-size: 29px;
+        width: 20vw;
+        margin-left: -10vw;
+        height: 7vh;
+    }
+}

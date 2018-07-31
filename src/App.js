@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import classes from './App.css';
+import Loader from './components/UI/Loader/Loader';
+import MainPage from './containers/MainPage/MainPage';
 
 class App extends Component {
+
+  state={
+    hideLoader: false
+  }
+
   render() {
+
+    setTimeout(() => {
+      this.setState({hideLoader:true});
+    }, 3000);
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className={classes.App}>
+        <Loader hide={this.state.hideLoader}/>
+        <MainPage/>
       </div>
     );
   }

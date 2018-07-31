@@ -1,0 +1,52 @@
+/*----FONTS----*/
+@font-face{
+    font-family: 'Baloo';
+    src: url('../../assets/Fonts/Baloo/Baloo-Regular.ttf');
+    font-weight: normal;
+    font-style: cursive;
+}
+
+/*----STYLES----*/
+.Container{
+    position: fixed;
+    min-height: 300px;
+    width: 50vw;
+    height: 50vh;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    margin: auto;
+}
+
+.Container h1{
+    font-size: 12vw;
+    text-align: center;
+    color: #00C68F;
+    font-family: 'Baloo', cursive;
+}
+
+.Buttons{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+/*----MEDIA QUERYS----*/
+
+@media screen and (min-width: 1000px){
+    .Container {        
+        width: 20vw;
+        height: 50vh;
+    }
+}
+
+@media screen and (min-width: 600px){
+    .Container h1{
+        font-size: 4vw;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .Container{
+        height: 300px;
+    }
+}
