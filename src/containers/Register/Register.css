@@ -1,0 +1,145 @@
+/*----FONTS----*/
+@font-face{
+    font-family: 'Baloo';
+    src: url('../../assets/Fonts/Baloo/Baloo-Regular.ttf');
+    font-weight: normal;
+    font-style: cursive;
+}
+
+@font-face{
+    font-family: 'Brandone Grotesque Regular';
+    src: url('../../assets/Fonts/Brandone/Brandon_reg.otf');
+    font-weight: normal;
+}
+
+/*----STYLES----*/
+.Background{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    display: block;    
+    animation-name: fallDown;
+    animation-duration: 700ms;
+    animation-fill-mode: forwards;
+}
+
+.Top{
+    width: 100%;
+    height: 50%;
+    position: absolute;
+    top: 0;
+    background: linear-gradient(to right,  #00C68F, #C8F1D4);
+    z-index: 1;
+}
+
+.Top > p{
+    font-family: 'Brandone Grotesque Regular';
+    color: white;
+    position: relative;
+    font-size: 6vw;
+    margin: 0;
+}
+
+.Top > h1{
+    font-size: 10vw;
+    position: 0;
+    top: 0;
+    text-align: center;
+    color: white;
+    font-family: 'Baloo', cursive;
+    margin: 0;
+    margin-top: 5vh;
+}
+
+.Bottom{
+    width: 100%;
+    height: 50%;
+    position: absolute;
+    bottom: 0;
+    background-color: white;
+    z-index: 1;
+}
+
+.Bottom > p{
+    position: relative;
+    top: 80%;
+    left: 0;
+    color: #838383;
+    font-family: 'Brandone Grotesque Regular';
+    font-size: 22px;
+}
+
+.Bottom > p > a{
+    color: #00C68F;
+    text-decoration: none;
+}
+
+.Bottom > p > a:hover,
+.Bottom > p > a:focus{
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+}
+
+.FormContainer{
+    width: 40%;
+    height: 40%;
+    border-radius: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -20vw;
+    margin-top: -20vh;
+    background-color: white;
+    box-shadow: 2px 4px 12px rgb(90,90,90);
+    z-index: 2;
+}
+
+.FormContainer form{
+    position: relative;
+    top: 50%;
+    margin-top: -15vh;
+    margin-bottom: 25vh;
+}
+
+/*----ANIMATIONS----*/
+@keyframes fallDown{
+    0%{
+        transform: translateY(-100%);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+
+/*----MEDIA QUERYS----*/
+@media screen and (max-width: 1250px){
+    .FormContainer{
+        width: 60%;
+        margin-left: -30%;
+    }
+}
+
+@media screen and (max-width: 700px){
+    .FormContainer{
+        width: 90%;
+        height: 35%;
+        margin-left: -45%;
+        margin-top: -17.5vh;
+    }
+
+    .FormContainer form{
+        margin-bottom: 19vh;
+    }
+}
+
+@media screen and (min-width: 700px){
+    .Top > h1{
+        font-size: 4vw;
+    }
+
+    .Top > p{
+        font-size: 2vw;
+    }
+}

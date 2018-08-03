@@ -14,7 +14,13 @@ const Button = (props) => {
 
     buttonClasses = buttonClasses.join(' ');
 
-    return <button className={buttonClasses}>{props.value}</button>;
+    return <button 
+                className={buttonClasses}
+                onClick={props.click}
+                disabled={props.disabled}
+            >
+                {props.value}
+            </button>;
 };
 
 export default Button;

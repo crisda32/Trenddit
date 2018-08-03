@@ -5,6 +5,7 @@
     font-weight: normal;
 }
 
+/*----STYLES----*/
 :focus {outline:none;}
 ::-moz-focus-inner {border:0;}
 
@@ -12,8 +13,8 @@
     display: block;
     position: relative;
     font-family: 'Brandone Grotesque Regular';
-    font-size: 5.6vw;
-    margin-bottom: 8%;
+    font-size: 4vw;
+    margin-bottom: 2vh;
     min-height: 50px;
     width: 40vw;
     height: 7vh;
@@ -28,6 +29,14 @@
 .GeneralButton:hover,
 .GeneralButton:focus{
     box-shadow: 5px 8px 18px #888888;
+}
+
+.GeneralButton:disabled,
+.GeneralButton:disabled:hover{
+    color: rgb(161, 161, 161);
+    background: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
 }
 
 .White{
@@ -47,13 +56,14 @@
 }
 
 .Blue{
-
+    background-color: #2F6AA5;
+    color: white;
 }
 
 /*----MEDIA QUERYS----*/
-@media screen and (min-width: 600px){
+@media screen and (min-width: 1000px){
     .GeneralButton{
-        font-size: 29px;
+        font-size: 20px;
         width: 20vw;
         margin-left: -10vw;
         height: 7vh;
