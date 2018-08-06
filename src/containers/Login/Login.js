@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import classes from './Login.css';
 import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
+import * as actions from '../../store/actions/index';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 class Login extends Component {
     state = {
@@ -62,7 +65,8 @@ class Login extends Component {
         }
 
         if (rules.validEmail) {
-            isValid = value.includes('@') && value.includes('.') && isValid;
+            const regularExpression = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+            isValid = regularExpression.test(value) && isValid;
         }
 
         return isValid;
@@ -93,11 +97,7 @@ class Login extends Component {
     }
 
     loginWithEmail = (email, password) => {
-        console.log(email, password);
-    }
-
-    loginWithFacebook = () => {
-        console.log('Logged in with facebook');
+        this.props.onLoginAuthentication(email, password);
     }
 
     render() {
@@ -109,23 +109,32 @@ class Login extends Component {
             });
         }
 
+        let form = (
+            formElementsArray.map(formElement => (
+                <Input
+                    key={formElement.id}
+                    elementType={formElement.config.elementType}
+                    elementConfig={formElement.config.elementConfig}
+                    value={formElement.config.value}
+                    invalid={!formElement.config.valid}
+                    shouldValidate={formElement.config.validation}
+                    touched={formElement.config.touched}
+                    icon={formElement.config.icon}
+                    changed={(event) => this.inputChangedHandler(event, formElement.id)}
+                />
+            ))
+        );
+
+        if (this.props.loading) {
+            form = <Spinner />
+        }
+
         return (
             <div className={classes.Background}>
+                {this.props.isAuthenticated ? <Redirect to='/'/> : null}
                 <div className={classes.FormContainer}>
                     <form>
-                        {formElementsArray.map(formElement => (
-                            <Input
-                                key={formElement.id}
-                                elementType={formElement.config.elementType}
-                                elementConfig={formElement.config.elementConfig}
-                                value={formElement.config.value}
-                                invalid={!formElement.config.valid}
-                                shouldValidate={formElement.config.validation}
-                                touched={formElement.config.touched}
-                                icon={formElement.config.icon}
-                                changed={(event) => this.inputChangedHandler(event, formElement.id)}
-                            />
-                        ))}
+                        {form}
                     </form>
                     <Button
                         value="Log in"
@@ -133,11 +142,6 @@ class Login extends Component {
                         disabled={!this.state.formIsValid}
                         click={() => this.loginWithEmail(this.state.loginForm.email.value,
                             this.state.loginForm.password.value)}
-                    />
-                    <Button
-                        value="Log in with FaceBook"
-                        buttonType="blue"
-                        click={this.loginWithFacebook}
                     />
                 </div>
                 <div className={classes.Top}>
@@ -152,4 +156,18 @@ class Login extends Component {
     }
 }
 
-export default Login;
+const mapDispatchToProps = dispatch => {
+    return{
+        onLoginAuthentication: (email, password) => dispatch(actions.logInAuthentication(email, password))
+    };
+};
+
+const mapStateToProps = state => {
+    return{
+        loading: state.authReducer.loading,
+        error: state.authReducer.error,
+        isAuthenticated: state.authReducer.token !== null
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

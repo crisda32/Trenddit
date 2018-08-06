@@ -2,7 +2,7 @@ import React from 'react';
 
 import classes from './Input.css';
 
-const Input = (props) =>{
+const input = (props) =>{
     let inputElement = null;
     let inputIcon = require('../../../assets/Icons/'+props.icon+'.png');
     const inputClasses = [classes.InputElement];
@@ -53,4 +53,4 @@ const Input = (props) =>{
     );
 }
 
-export default Input;
+export default input;

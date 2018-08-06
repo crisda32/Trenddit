@@ -7,8 +7,8 @@
 
 /*----STYLES----*/
 .Input{
-    width: 94%;
-    left: 3%;
+    width: 90%;
+    left: 5%;
     position: relative;
     box-sizing: border-box;
     border-bottom: 1px solid #ccc;
@@ -17,8 +17,8 @@
 
 .Input img{
     position: relative;
-    width: 7%;
-    height: 7%;
+    width: 2vh;
+    height: 2vh;
 }
 
 .Label{
@@ -55,6 +55,6 @@
 @media screen and (max-height: 500px){
     .InputElement{
         padding: 3px 3px;
-        font-size: 2vh;
+        font-size: 3vmax;
     }
 }

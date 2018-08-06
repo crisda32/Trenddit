@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import classes from './Register.css';
 import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
+import * as actions from '../../store/actions/index';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 class Register extends Component {
     state = {
@@ -78,7 +81,8 @@ class Register extends Component {
         }
 
         if (rules.validEmail) {
-            isValid = value.includes('@') && value.includes('.') && isValid;
+            const regularExpression = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+            isValid = regularExpression.test(value) && isValid;
         }
 
         if (rules.validUsername) {
@@ -116,12 +120,8 @@ class Register extends Component {
         this.setState({ registerForm: updatedRegisterForm, formIsValid: formIsValid });
     }
 
-    registerWithEmail = (username, email, password) => {
-        console.log(username, email, password);
-    }
-
-    registerWithFacebook = () => {
-        console.log('Registered in with facebook');
+    registerWithEmail = (email, password, displayName) => {
+        this.props.onRegisterAuthentication(email, password, displayName);
     }
 
     render() {
@@ -133,23 +133,32 @@ class Register extends Component {
             });
         }
 
+        let form = (
+            formElementsArray.map(formElement => (
+                <Input
+                    key={formElement.id}
+                    elementType={formElement.config.elementType}
+                    elementConfig={formElement.config.elementConfig}
+                    value={formElement.config.value}
+                    invalid={!formElement.config.valid}
+                    shouldValidate={formElement.config.validation}
+                    touched={formElement.config.touched}
+                    icon={formElement.config.icon}
+                    changed={(event) => this.inputChangedHandler(event, formElement.id)}
+                />
+            ))
+        );
+
+        if (this.props.loading) {
+            form = <Spinner />
+        }
+
         return (
             <div className={classes.Background}>
+                {this.props.isAuthenticated ? <Redirect to='/'/> : null}
                 <div className={classes.FormContainer}>
                     <form>
-                        {formElementsArray.map(formElement => (
-                            <Input
-                                key={formElement.id}
-                                elementType={formElement.config.elementType}
-                                elementConfig={formElement.config.elementConfig}
-                                value={formElement.config.value}
-                                invalid={!formElement.config.valid}
-                                shouldValidate={formElement.config.validation}
-                                touched={formElement.config.touched}
-                                icon={formElement.config.icon}
-                                changed={(event) => this.inputChangedHandler(event, formElement.id)}
-                            />
-                        ))}
+                        {form}
                     </form>
                     <Button
                         value="Sign up"
@@ -157,11 +166,6 @@ class Register extends Component {
                         disabled={!this.state.formIsValid}
                         click={() => this.registerWithEmail(this.state.registerForm.email.value,
                             this.state.registerForm.password.value, this.state.registerForm.username.value)}
-                    />
-                    <Button
-                        value="Sign up with FaceBook"
-                        buttonType="blue"
-                        click={this.registerWithFacebook}
                     />
                 </div>
                 <div className={classes.Top}>
@@ -176,4 +180,18 @@ class Register extends Component {
     }
 }
 
-export default Register;
+const mapDispatchToProps = dispatch => {
+    return {
+        onRegisterAuthentication: (email, password, displayName) => dispatch(actions.signUpAuthentication(email, password, displayName))
+    };
+};
+
+const mapStateToProps = state => {
+    return {
+        loading: state.authReducer.loading,
+        error: state.authReducer.error,
+        isAuthenticated: state.authReducer.token !== null
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

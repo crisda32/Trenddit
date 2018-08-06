@@ -1,0 +1,35 @@
+.ViewItem{
+    height: 100%;
+    width: 3vw;
+}
+
+.ViewItem button{    
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2vmax;
+    height: 2vmax;
+    background: transparent;
+    border: transparent;    
+    filter: grayscale(100%);
+    cursor: pointer;   
+    padding: 0;
+}
+
+.ViewItem img{
+    position: relative;
+    top: 0;
+    left: 20%;
+    width: 2vmax;
+    height: 2vmax;
+    transform: translateX(-20%); 
+}
+
+.ViewItem button:hover{
+    filter: grayscale(70%);
+}
+
+.ViewItem button:focus{    
+    filter: grayscale(70%);
+    border: 1px solid rgb(0, 198, 143);
+}
