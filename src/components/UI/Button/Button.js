@@ -2,7 +2,7 @@ import React from 'react';
 
 import classes from './Button.css';
 
-const button = (props) => {
+const Button = (props) => {
     let buttonClasses = [classes.GeneralButton];
     if(props.buttonType === "white"){
         buttonClasses.push(classes.White);
@@ -23,4 +23,4 @@ const button = (props) => {
             </button>;
 };
 
-export default button;
+export default Button;

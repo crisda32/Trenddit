@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import classes from './Login.css';
 import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
-import * as actions from '../../store/actions/index';
-import Spinner from '../../components/UI/Spinner/Spinner';
 
 class Login extends Component {
     state = {
@@ -65,8 +62,7 @@ class Login extends Component {
         }
 
         if (rules.validEmail) {
-            const regularExpression = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-            isValid = regularExpression.test(value) && isValid;
+            isValid = value.includes('@') && value.includes('.') && isValid;
         }
 
         return isValid;
@@ -97,7 +93,11 @@ class Login extends Component {
     }
 
     loginWithEmail = (email, password) => {
-        this.props.onLoginAuthentication(email, password);
+        console.log(email, password);
+    }
+
+    loginWithFacebook = () => {
+        console.log('Logged in with facebook');
     }
 
     render() {
@@ -109,6 +109,7 @@ class Login extends Component {
             });
         }
 
+<<<<<<< HEAD
         let errorMessage = "";
         if (this.props.error) {
             switch (this.props.error.message) {
@@ -162,10 +163,79 @@ class Login extends Component {
             form = <div className={classes.SpinnerWrapper}><Spinner /></div>;
         }
 
+||||||| 6568df6... Dashboard
+        let form = (
+            formElementsArray.map(formElement => (
+                <Input
+                    key={formElement.id}
+                    elementType={formElement.config.elementType}
+                    elementConfig={formElement.config.elementConfig}
+                    value={formElement.config.value}
+                    invalid={!formElement.config.valid}
+                    shouldValidate={formElement.config.validation}
+                    touched={formElement.config.touched}
+                    icon={formElement.config.icon}
+                    changed={(event) => this.inputChangedHandler(event, formElement.id)}
+                />
+            ))
+        );
+
+        if (this.props.loading) {
+            form = <Spinner />
+        }
+
+=======
+>>>>>>> parent of 6568df6... Dashboard
         return (
             <div className={classes.Background}>
+<<<<<<< HEAD
                 {this.props.isAuthenticated ? <Redirect to='/' /> : null}
                 {form}
+||||||| 6568df6... Dashboard
+                {this.props.isAuthenticated ? <Redirect to='/'/> : null}
+                <div className={classes.FormContainer}>
+                    <form>
+                        {form}
+                    </form>
+                    <Button
+                        value="Log in"
+                        buttonType="green"
+                        disabled={!this.state.formIsValid}
+                        click={() => this.loginWithEmail(this.state.loginForm.email.value,
+                            this.state.loginForm.password.value)}
+                    />
+                </div>
+=======
+                <div className={classes.FormContainer}>
+                    <form>
+                        {formElementsArray.map(formElement => (
+                            <Input
+                                key={formElement.id}
+                                elementType={formElement.config.elementType}
+                                elementConfig={formElement.config.elementConfig}
+                                value={formElement.config.value}
+                                invalid={!formElement.config.valid}
+                                shouldValidate={formElement.config.validation}
+                                touched={formElement.config.touched}
+                                icon={formElement.config.icon}
+                                changed={(event) => this.inputChangedHandler(event, formElement.id)}
+                            />
+                        ))}
+                    </form>
+                    <Button
+                        value="Log in"
+                        buttonType="green"
+                        disabled={!this.state.formIsValid}
+                        click={() => this.loginWithEmail(this.state.loginForm.email.value,
+                            this.state.loginForm.password.value)}
+                    />
+                    <Button
+                        value="Log in with FaceBook"
+                        buttonType="blue"
+                        click={this.loginWithFacebook}
+                    />
+                </div>
+>>>>>>> parent of 6568df6... Dashboard
                 <div className={classes.Top}>
                     <h1>Trenddit</h1>
                     <p>Log in</p>
@@ -178,6 +248,7 @@ class Login extends Component {
     }
 }
 
+<<<<<<< HEAD
 const mapDispatchToProps = dispatch => {
     return {
         onLoginAuthentication: (email, password) => dispatch(actions.logInAuthentication(email, password))
@@ -193,3 +264,22 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
+||||||| 6568df6... Dashboard
+const mapDispatchToProps = dispatch => {
+    return{
+        onLoginAuthentication: (email, password) => dispatch(actions.logInAuthentication(email, password))
+    };
+};
+
+const mapStateToProps = state => {
+    return{
+        loading: state.authReducer.loading,
+        error: state.authReducer.error,
+        isAuthenticated: state.authReducer.token !== null
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
+=======
+export default Login;
+>>>>>>> parent of 6568df6... Dashboard

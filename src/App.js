@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
 
 import classes from './App.css';
 import Loader from './components/UI/Loader/Loader';
 import MainPage from './containers/MainPage/MainPage';
 import Login from './containers/Login/Login';
 import Register from './containers/Register/Register';
-import * as actions from './store/actions/index';
-import Dashboard from './containers/Dashboard/Dashboard';
-import Layout from './hoc/Layout/Layout';
 
 class App extends Component {
 
@@ -17,56 +13,23 @@ class App extends Component {
     hideLoader: false
   }
 
-  componentDidMount() {
-    this.props.onTryAutoSignUp();
-  }
-
   render() {
+
     setTimeout(() => {
       this.setState({ hideLoader: true });
     }, 3000);
 
-    let routes = null;
-
-    this.props.isAuthenticated
-      ? routes = (
-        <Layout>
-          <Switch>
-            <Route path='/profile' render={() => <p>MyProfile</p>} />
-            <Route path='/posts/' render={() => <p>Post</p>} />
-            <Route exact path='/' component={Dashboard} />
-            <Redirect to='/' />
-          </Switch>
-        </Layout>
-      )
-      : routes = (
+    return (
+      <div className={classes.App}>
+        <Loader hide={this.state.hideLoader} />
         <Switch>
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
-          <Route exact path='/' component={MainPage} />
-          <Route render={() => <p>Page not found!</p>} />
+          <Route path='/' component={MainPage} />
         </Switch>
-      );
-
-    return (
-      <div className={classes.App}>
-        {/* <Loader hide={this.state.hideLoader} /> */}
-        {routes}
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    isAuthenticated: state.authReducer.token !== null
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onTryAutoSignUp: () => dispatch(actions.authenticationCheckState())
-  }
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default App;

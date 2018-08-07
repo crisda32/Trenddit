@@ -64,8 +64,7 @@
 
 .Bottom > p{
     position: relative;
-    top: 100%;
-    margin-top: -12vh;
+    top: 80%;
     left: 0;
     color: #838383;
     font-family: 'Brandone Grotesque Regular';
@@ -99,9 +98,9 @@
 
 .FormContainer form{
     position: relative;
+    top: 50%;
+    margin-top: -10vh;
     margin-bottom: 29vh;
-    height: 50%;
-    top: 5vh;
 }
 
 .SpinnerWrapper{
@@ -132,35 +131,13 @@
 @media screen and (max-width: 700px){
     .FormContainer{
         width: 80%;
-        min-height: 80px;
-        min-width: 80px;
+        height: 30%;
         margin-left: -40%;
         margin-top: -15vh;
-        border-radius: 10px;
     }
 
     .FormContainer form{
-        margin-top: -4vh;
-        margin-bottom: 15vh;
-    }
-
-    .Top > h1{
-        font-size: 8vw;
-    }
-
-    .Top > p{
-        margin-top: -1em;
-    }
-
-    .Top > p,
-    .Bottom > p{
-        font-size: 4vw;
-    }
-}
-
-@media screen and (max-height: 500px){
-    .FormContainer{
-        height: 10%;
+        margin-bottom: 18vh;
     }
 }
 
@@ -171,10 +148,5 @@
 
     .Top > p{
         font-size: 2vw;
-    }
-
-    .FormContainer form{
-        top: 50%;
-        margin-top: -8vh;
     }
 }
