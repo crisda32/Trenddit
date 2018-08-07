@@ -27,7 +27,6 @@ const authenticationSuccess = (state, action) => {
 };
 
 const authenticationFail = (state, action) => {
-    console.log(action);
     return updateObject(state, {
         token: null,
         userId: null,

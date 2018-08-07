@@ -17,7 +17,7 @@
 
 .Input img{
     position: relative;
-    width: 2vh;
+    width: auto;
     height: 2vh;
 }
 

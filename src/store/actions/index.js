@@ -4,3 +4,8 @@ export {
     logout,
     authenticationCheckState
 } from './authenticateActions';
+
+export{
+    setViewMode,
+    toggleMyProfile
+}from './auxiliaryActions'

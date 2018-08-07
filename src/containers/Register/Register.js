@@ -20,7 +20,8 @@ class Register extends Component {
                 validation: {
                     required: true,
                     validUsername: true,
-                    minLength: 6
+                    minLength: 6,
+                    maxLength: 10
                 },
                 valid: false,
                 touched: false,
@@ -133,41 +134,60 @@ class Register extends Component {
             });
         }
 
+        let errorMessage = "";
+        if (this.props.error) {
+            switch (this.props.error.message) {
+                case 'EMAIL_EXISTS':
+                    errorMessage = 'That Email address already exists.';
+                    break;
+                case 'OPERATION_NOT_ALLOWED':
+                    errorMessage = 'Operation not allowed.';
+                    break;
+                case 'TOO_MANY_ATTEMPTS_TRY_LATER':
+                    errorMessage = 'Too many attempts. Try again later.';
+                    break;
+                default:
+                    errorMessage = 'Unknown Error';
+                    break;
+            }
+        }
+
         let form = (
-            formElementsArray.map(formElement => (
-                <Input
-                    key={formElement.id}
-                    elementType={formElement.config.elementType}
-                    elementConfig={formElement.config.elementConfig}
-                    value={formElement.config.value}
-                    invalid={!formElement.config.valid}
-                    shouldValidate={formElement.config.validation}
-                    touched={formElement.config.touched}
-                    icon={formElement.config.icon}
-                    changed={(event) => this.inputChangedHandler(event, formElement.id)}
+            <div className={classes.FormContainer}>
+                <form>
+                    {formElementsArray.map(formElement => (
+                        <Input
+                            key={formElement.id}
+                            elementType={formElement.config.elementType}
+                            elementConfig={formElement.config.elementConfig}
+                            value={formElement.config.value}
+                            invalid={!formElement.config.valid}
+                            shouldValidate={formElement.config.validation}
+                            touched={formElement.config.touched}
+                            icon={formElement.config.icon}
+                            changed={(event) => this.inputChangedHandler(event, formElement.id)}
+                        />
+                    ))}
+                </form>
+                {this.props.error ? <p style={{ color: 'red' }}>{errorMessage}</p> : null}
+                <Button
+                    value="Sign up"
+                    buttonType="green"
+                    disabled={!this.state.formIsValid}
+                    click={() => this.registerWithEmail(this.state.registerForm.email.value,
+                        this.state.registerForm.password.value, this.state.registerForm.username.value)}
                 />
-            ))
+            </div>
         );
 
         if (this.props.loading) {
-            form = <Spinner />
+            form = <div className={classes.SpinnerWrapper}><Spinner /></div>
         }
 
         return (
             <div className={classes.Background}>
-                {this.props.isAuthenticated ? <Redirect to='/'/> : null}
-                <div className={classes.FormContainer}>
-                    <form>
-                        {form}
-                    </form>
-                    <Button
-                        value="Sign up"
-                        buttonType="green"
-                        disabled={!this.state.formIsValid}
-                        click={() => this.registerWithEmail(this.state.registerForm.email.value,
-                            this.state.registerForm.password.value, this.state.registerForm.username.value)}
-                    />
-                </div>
+                {this.props.isAuthenticated ? <Redirect to='/' /> : null}
+                {form}
                 <div className={classes.Top}>
                     <h1>Trenddit</h1>
                     <p>Sign up</p>

@@ -118,4 +118,5 @@
 
 .Bottom .Active{
     filter: grayscale(0%) !important;
+    cursor: default;
 }

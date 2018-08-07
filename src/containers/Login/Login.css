@@ -104,6 +104,13 @@
     top: 5vh;
 }
 
+.SpinnerWrapper{
+    z-index: 100;
+    bottom: -50%;
+    display: block;
+    position: relative;
+}
+
 /*----ANIMATIONS----*/
 @keyframes fallDown{
     0%{

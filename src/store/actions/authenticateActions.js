@@ -51,8 +51,6 @@ export const signUpAuthentication = (email, password, displayName) => {
             password: password,
             returnSecureToken: true
         };
-        console.log('[Auth action: ]', authData);
-
         let url = "signupNewUser?key=AIzaSyD2w3TS-cvpkDRnpv8arN109P3lf0bb9uA";
         axios.post(url, authData)
             .then(response => {

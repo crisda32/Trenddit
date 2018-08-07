@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 
 import classes from './Toolbar.css';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import ViewItems from '../ViewItems/ViewItems';
 import MyProfile from './MyProfile/MyProfile';
+import * as actions from '../../../store/actions/index';
 
 class toolbar extends Component {
     componentDidMount() {
@@ -16,7 +18,7 @@ class toolbar extends Component {
     }
 
     selectPredetView = () => {
-        const views = document.getElementsByTagName('BUTTON')[0].className = classes.Active;
+        const views = document.getElementById('view-2').className = classes.Active;
     }
 
     selectViewHandler = (e) => {
@@ -25,8 +27,9 @@ class toolbar extends Component {
             views[i].className = "";
         }
 
-        if (e.target.tagName == 'BUTTON') {
+        if (e.target.tagName === 'BUTTON') {
             e.target.className = classes.Active;
+            this.props.setViewMode(e.target.id);
         }
     }
 
@@ -55,4 +58,10 @@ class toolbar extends Component {
     }
 }
 
-export default toolbar;
+const mapDispatchToProps = dispatch => {
+    return{
+        setViewMode: (viewMode) => dispatch(actions.setViewMode(viewMode))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(toolbar);

@@ -109,41 +109,63 @@ class Login extends Component {
             });
         }
 
+        let errorMessage = "";
+        if (this.props.error) {
+            switch (this.props.error.message) {
+                case 'EMAIL_NOT_FOUND':
+                    errorMessage = 'Email not found.';
+                    break;
+                case 'INVALID_PASSWORD':
+                    errorMessage = 'Invalid Password.';
+                    break;
+                case 'USER_DISABLED':
+                    errorMessage = 'User Disabled.';
+                    break;
+                case 'EMAIL_EXISTS':
+                    errorMessage = '';
+                    break;
+                default:
+                    errorMessage = 'Unknown Error.';
+                    break;
+            }
+        }
+
         let form = (
-            formElementsArray.map(formElement => (
-                <Input
-                    key={formElement.id}
-                    elementType={formElement.config.elementType}
-                    elementConfig={formElement.config.elementConfig}
-                    value={formElement.config.value}
-                    invalid={!formElement.config.valid}
-                    shouldValidate={formElement.config.validation}
-                    touched={formElement.config.touched}
-                    icon={formElement.config.icon}
-                    changed={(event) => this.inputChangedHandler(event, formElement.id)}
+            <div className={classes.FormContainer}>
+                <form>
+                    {formElementsArray.map(formElement => (
+                        <Input
+                            key={formElement.id}
+                            elementType={formElement.config.elementType}
+                            elementConfig={formElement.config.elementConfig}
+                            value={formElement.config.value}
+                            invalid={!formElement.config.valid}
+                            shouldValidate={formElement.config.validation}
+                            touched={formElement.config.touched}
+                            icon={formElement.config.icon}
+                            changed={(event) => this.inputChangedHandler(event, formElement.id)}
+                        />
+                    ))}
+                </form>
+                {this.props.error ? <p style={{ color: 'red' }}>{errorMessage}</p> : null}
+                <Button
+                    value="Log in"
+                    buttonType="green"
+                    disabled={!this.state.formIsValid}
+                    click={() => this.loginWithEmail(this.state.loginForm.email.value,
+                        this.state.loginForm.password.value)}
                 />
-            ))
+            </div>
         );
 
         if (this.props.loading) {
-            form = <Spinner />
+            form = <div className={classes.SpinnerWrapper}><Spinner /></div>;
         }
 
         return (
             <div className={classes.Background}>
-                {this.props.isAuthenticated ? <Redirect to='/'/> : null}
-                <div className={classes.FormContainer}>
-                    <form>
-                        {form}
-                    </form>
-                    <Button
-                        value="Log in"
-                        buttonType="green"
-                        disabled={!this.state.formIsValid}
-                        click={() => this.loginWithEmail(this.state.loginForm.email.value,
-                            this.state.loginForm.password.value)}
-                    />
-                </div>
+                {this.props.isAuthenticated ? <Redirect to='/' /> : null}
+                {form}
                 <div className={classes.Top}>
                     <h1>Trenddit</h1>
                     <p>Log in</p>
@@ -157,13 +179,13 @@ class Login extends Component {
 }
 
 const mapDispatchToProps = dispatch => {
-    return{
+    return {
         onLoginAuthentication: (email, password) => dispatch(actions.logInAuthentication(email, password))
     };
 };
 
 const mapStateToProps = state => {
-    return{
+    return {
         loading: state.authReducer.loading,
         error: state.authReducer.error,
         isAuthenticated: state.authReducer.token !== null

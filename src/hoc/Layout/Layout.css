@@ -6,4 +6,17 @@
     overflow-y: auto;
     background-color: #E7F7F8;
     z-index: 1;
+    animation-name: fallDown;
+    animation-duration: 1400ms;
+    animation-fill-mode: forwards;
+}
+
+/*----ANIMATIONS----*/
+@keyframes fallDown{
+    0%{
+        transform: translateY(-100%);
+    }
+    100%{
+        transform: translateY(0);
+    }
 }
