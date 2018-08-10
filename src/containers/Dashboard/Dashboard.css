@@ -1,3 +1,47 @@
+/*----FONTS----*/
+@font-face{
+    font-family: 'Brandone Grotesque Regular';
+    src: url('../../assets/Fonts/Brandone/Brandon_reg.otf');
+    font-weight: normal;
+}
+
+/*----STYLE----*/
 .Dashboard{
     z-index: 1;
+}
+
+
+.PostsNotFound{
+    font-size: 5vmax;
+    color: #aaa;
+    position: relative;
+    width: 90%;
+    left: 5%;
+    top: 20vh;
+}
+
+.GetMoreButton{
+    margin-bottom: 2%;
+    background-color: transparent;
+    text-shadow:4px 4px 8px #606060; 
+    color: #00C68F;
+    border: transparent;
+    font-size: 1.5vmax;
+    font-family: 'Brandone Grotesque Regular';
+    cursor: pointer;
+}
+
+.GetMoreButton:hover,
+.GetMoreButton:focus{
+    color: rgb(0, 146, 105);
+}
+
+.GetMoreButton:focus{
+    border: 1px solid #ccc;
+}
+
+.Posts{
+    width: 100%;
+    position: relative;
+    margin-top: 1vh;
 }

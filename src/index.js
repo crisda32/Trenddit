@@ -10,12 +10,14 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import authenticateReducer from './store/reducers/authenticateReducers';
 import auxiliaryReducer from './store/reducers/auxiliaryReducers';
+import redditReducer from './store/reducers/redditReducers';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
     authReducer: authenticateReducer,
-    auxReducer: auxiliaryReducer
+    auxReducer: auxiliaryReducer,
+    redditReducer: redditReducer
 })
 
 const store = createStore(rootReducer, composeEnhancers(

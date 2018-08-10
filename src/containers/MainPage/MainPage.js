@@ -9,7 +9,7 @@ class MainPage extends Component {
             classes.Container
         ]
     }
-
+    
     goToLogin = () => {
         let cssClasses = [...this.state.cssClasses];
         cssClasses.push(classes.Vanished);

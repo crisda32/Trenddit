@@ -1,8 +1,162 @@
+/*----FONTS----*/
+@font-face{
+    font-family: 'Brandone Grotesque Medium';
+    src: url('../../../../../assets/Fonts/Brandone/Brandon_med.otf');
+    font-weight: normal;
+}
+
+@font-face{
+    font-family: 'Brandone Grotesque Regular Italic';
+    src: url('../../../../../assets/Fonts/Brandone/Brandon_reg_it.otf');
+    font-weight: lighter;
+}
+
+/*----STYLE----*/
 .DropDown{
     position: absolute;
-    border: 1px solid red;
-    width: 20vw;
-    height: 40vh;
-    right: 0;
-    top: 100%;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5%;
+    width: 20vmax;
+    right: 30%;
+    top: 105%;
+    z-index: 10;
+    padding-bottom: 1vh;
+    box-shadow: 3px 3px 7px #000; 
+    display: none;
 }
+
+.Show{
+    display: block;
+    animation-name: showAnimation;
+    animation-duration: 500ms;
+    animation-fill-mode: forwards;
+}
+
+.Hide{    
+    animation-name: hideAnimation;
+    animation-duration: 2000ms;
+    animation-fill-mode: backwards;
+}
+
+.DropDown h2{
+    text-align: left;
+    font-size: 2vmax;
+    padding: 0;
+    margin: 1em 0 0 1em;
+    color: #00C68F;
+    font-family: 'Brandone Grotesque Medium', cursive;
+}
+
+.DropDown button.Logout{
+    border: transparent;
+    padding: 0.5vmax;
+    margin: 0;
+    right: 0;
+    top: 6%;
+    border-radius: 10px;
+    background-color: #909090;
+    font-family: 'Brandone Grotesque Medium', cursive;
+    font-size: 1vw;
+    box-shadow: 3px 3px 8px #404040;
+    color: white;
+    right: 2vh;
+    position: absolute;
+    width: 30%;
+    cursor: pointer;
+}
+
+.DropDown button.Logout:hover,
+.DropDown button.Logout:focus,
+.DropDown button.Logout:active{
+    background-color: #808080;
+}
+
+.DropDown button.Logout:focus{
+    outline: 1px solid #00C68F;
+}
+
+.DropDown button.Logout:active {
+    transform: translateY(4px);
+  }
+
+.DropDown hr {
+    display: block;
+    height: 1px;
+    width: 90%;
+    position: relative;
+    left: 5%;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+.DropDown img{
+    height: auto;
+    width: 6vmax;
+    margin: 0;
+    padding: 0;
+}
+
+.DropDown h3{
+    margin: 0;
+    padding: 0;
+    color: #00C68F;
+    font-family: 'Brandone Grotesque Medium', cursive;
+    font-size: 2.5vmax;
+}
+
+.DropDown > p{
+    margin: 0;
+    padding: 0;
+    color: black;
+    font-family: 'Brandone Grotesque Regular Italic', cursive;
+    font-size: 0.8vmax;
+}
+
+.DropDown table{
+    margin-top: 1vh;
+    width: 90%;
+    position: relative;
+    left: 5%;
+    color: #606060;
+}
+
+.DropDown table tbody tr td{
+    font-size: 1vmax;
+    width: 50%;
+    text-align: left;
+    padding: 0;
+}
+
+.DropDown table tbody tr td p{
+    display: inline-block;
+}
+
+.DropDown table img {
+    margin-right: 1vw;
+    height: 1.3vmax;
+    width: 1.3vmax;
+    display: inline-block;
+}
+
+/*----ANIMATIONS----*/
+@keyframes showAnimation{
+    0%{
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    25%{
+        opacity: 0.25;
+        transform: translateY(20%);
+    }
+    75%{
+        opacity: 0.75;
+    }
+    100%{
+        opacity: 1;     
+        transform: translateY(0%);   
+    }
+}
+

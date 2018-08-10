@@ -1,0 +1,86 @@
+/*----FONTS----*/
+@font-face{
+    font-family: 'Brandone Grotesque Regular';
+    src: url('../../assets/Fonts/Brandone/Brandon_reg.otf');
+    font-weight: normal;
+}
+
+/*----STYLE----*/
+
+.Post{
+    position: relative;
+    width: 94vw;
+    left: 3vw;
+    border-radius: 20px;
+    min-height: 30vh;
+    background-color: white;
+    box-shadow: 4px 4px 8px #aaa;
+    margin-bottom: 2vh;
+    padding: 1vmax 0;
+    text-align: left;
+    font-family: 'Brandone Grotesque Regular';
+}
+
+.Subreddit{
+    margin-left: 20px;
+    font-size: 1.3vw;
+    color: #00C68F;
+}
+
+.Author{
+    font-size: 1vw;
+    color: #aaa;
+    margin-left: 2em;
+}
+
+.PostTitle{
+    margin-top: 0;
+    margin-left: 20px;
+    font-size: 2vw;
+    max-width: 80%;
+    color: black;
+}
+
+.Content{
+    margin-left: 20px;
+    position: relative;
+    text-align: center;
+    height: 50vh;
+    margin-bottom: 5vh;
+}
+
+.Content img{
+    height: 50vh;
+    width: auto;
+    max-width: 80%;
+}
+
+.Content iframe{
+    border: none;
+    height: 100%;
+    width: 60%;
+    position: relative;
+}
+
+.PostDescription{
+    margin-left: 20px;
+    font-size: 1.5vw;
+    max-width: 80%;
+    color: black;
+}
+
+.PostLink{
+    margin-left: 20px;
+    color: blue;
+    text-decoration: none;
+    font-size: 1vw;
+}
+
+.PostLink:hover,
+.PostLink:focus{
+    color: rgb(0, 0, 190);
+}
+
+.PostLink:focus{
+    outline: 1px solid #ccc;
+}

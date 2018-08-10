@@ -50,7 +50,7 @@ class App extends Component {
 
     return (
       <div className={classes.App}>
-        {/* <Loader hide={this.state.hideLoader} /> */}
+        <Loader hide={this.state.hideLoader} />
         {routes}
       </div>
     );

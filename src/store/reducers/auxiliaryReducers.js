@@ -11,7 +11,6 @@ const setViewMode = (state, action) => {
 }
 
 const toggleMyProfile = (state, action) => {
-    console.log(state.hideMyProfile);
     return updateObject(state, {hideMyProfile: !state.hideMyProfile})
 }
 

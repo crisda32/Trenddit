@@ -51,7 +51,7 @@ export const signUpAuthentication = (email, password, displayName) => {
             password: password,
             returnSecureToken: true
         };
-        let url = "signupNewUser?key=AIzaSyD2w3TS-cvpkDRnpv8arN109P3lf0bb9uA";
+        const url = "signupNewUser?key=AIzaSyD2w3TS-cvpkDRnpv8arN109P3lf0bb9uA";
         axios.post(url, authData)
             .then(response => {
                 const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
