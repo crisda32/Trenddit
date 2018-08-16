@@ -1,0 +1,26 @@
+/*----FONTS----*/
+@font-face{
+    font-family: 'Brandone Grotesque Regular';
+    src: url('../../assets/Fonts/Brandone/Brandon_reg.otf');
+    font-weight: normal;
+}
+
+/*----STYLE----*/
+.Profile{
+    z-index: 1;
+}
+
+.PostsNotFound{
+    font-size: 5vmax;
+    color: #aaa;
+    position: relative;
+    width: 90%;
+    left: 5%;
+    top: 24vh;
+}
+
+.Posts{
+    width: 100%;
+    position: relative;
+    margin-top: 1vh;
+}

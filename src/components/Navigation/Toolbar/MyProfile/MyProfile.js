@@ -13,17 +13,15 @@ class MyProfile extends Component {
             pathname: './'
         });
         this.props.toggleMyProfile();
+        this.props.onRemoveSavedPosts();
         this.props.logout();
     }
 
     render() {
-        let profileIcon = require('../../../../assets/Icons/profile.png');
         return (
             <Auxiliar>
                 <div className={classes.MyProfile}>
-                    <button onClick={this.props.toggleMyProfile}>
-                        <img src={profileIcon} alt="profile-icon" />
-                    </button>
+                    <button onClick={this.props.toggleMyProfile}></button>
                     <div>
                         <p className={classes.DisplayName}>{this.props.displayName}</p>
                         <p className={classes.Info}>MyProfile</p>
@@ -34,6 +32,7 @@ class MyProfile extends Component {
                     displayName={this.props.displayName} 
                     email={"crisda32@hotmail.com"}
                     logout={this.logout}
+                    savedPosts={this.props.savedPosts}
                 />
             </Auxiliar>
         );
@@ -43,14 +42,16 @@ class MyProfile extends Component {
 const mapStateToProps = state => {
     return {
         displayName: state.authReducer.displayName,
-        hideMyProfile: state.auxReducer.hideMyProfile
+        hideMyProfile: state.auxReducer.hideMyProfile,
+        savedPosts: state.firebaseReducer.savedPosts.length
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         toggleMyProfile: () => dispatch(actions.toggleMyProfile()),
-        logout: () => dispatch(actions.logout())
+        logout: () => dispatch(actions.logout()),
+        onRemoveSavedPosts: () => dispatch(actions.removeSavedPosts())
     }
 }
 

@@ -18,7 +18,7 @@
     border: 1px solid #ccc;
     border-radius: 5%;
     width: 20vmax;
-    right: 30%;
+    right: 10%;
     top: 105%;
     z-index: 10;
     padding-bottom: 1vh;
@@ -43,7 +43,7 @@
     text-align: left;
     font-size: 2vmax;
     padding: 0;
-    margin: 1em 0 0 1em;
+    margin: 1em 0 1em 1em;
     color: #00C68F;
     font-family: 'Brandone Grotesque Medium', cursive;
 }
@@ -53,11 +53,11 @@
     padding: 0.5vmax;
     margin: 0;
     right: 0;
-    top: 6%;
+    top: 10%;
     border-radius: 10px;
     background-color: #909090;
     font-family: 'Brandone Grotesque Medium', cursive;
-    font-size: 1vw;
+    font-size: 1vmax;
     box-shadow: 3px 3px 8px #404040;
     color: white;
     right: 2vh;
@@ -88,7 +88,7 @@
     left: 5%;
     border: 0;
     border-top: 1px solid #ccc;
-    margin: 1em 0;
+    margin-bottom: 5%;
     padding: 0;
 }
 
@@ -112,7 +112,7 @@
     padding: 0;
     color: black;
     font-family: 'Brandone Grotesque Regular Italic', cursive;
-    font-size: 0.8vmax;
+    font-size: 1vmax;
 }
 
 .DropDown table{
@@ -126,17 +126,21 @@
 .DropDown table tbody tr td{
     font-size: 1vmax;
     width: 50%;
-    text-align: left;
+    text-align: center;
     padding: 0;
 }
 
 .DropDown table tbody tr td p{
     display: inline-block;
+    margin: 0;
+    position: relative;
+    top: -0.5em;
 }
 
 .DropDown table img {
+    margin: 0;
     margin-right: 1vw;
-    height: 1.3vmax;
+    height: auto;
     width: 1.3vmax;
     display: inline-block;
 }

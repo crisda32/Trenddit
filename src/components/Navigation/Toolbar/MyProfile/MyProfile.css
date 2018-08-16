@@ -13,7 +13,9 @@
 }
 
 .MyProfile button{
-    background: transparent;
+    background-color: transparent;
+    background: url('../../../../assets/Icons/profile.png') no-repeat scroll 0 0 transparent;
+    background-size: cover;
     border: transparent;
     margin: 0;
     padding: 0;
@@ -64,12 +66,14 @@
 .MyProfile .DisplayName{
     color: #00C68F;
     font-size: 1.5vmax;
+    margin: 0;
     margin-top: -1.5em;
 }
 
 .MyProfile .Info{
     color: #ccc;
     font-size: 1vmax;
+    margin: 0;
     margin-bottom: -2.5em;
 }
 

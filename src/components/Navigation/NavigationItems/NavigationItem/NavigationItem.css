@@ -45,3 +45,13 @@
 .NavigationItem a.active{
     color: #00C68F;
 }
+
+@media (orientation: portrait){
+    .NavigationItem{
+        width:12vw;
+    }
+
+    .NavigationItem a{
+        font-size: 2.5vmax;
+    }   
+}

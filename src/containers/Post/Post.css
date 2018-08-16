@@ -11,8 +11,7 @@
     position: relative;
     width: 94vw;
     left: 3vw;
-    border-radius: 20px;
-    min-height: 30vh;
+    border-radius: 2vmax;
     background-color: white;
     box-shadow: 4px 4px 8px #aaa;
     margin-bottom: 2vh;
@@ -21,59 +20,155 @@
     font-family: 'Brandone Grotesque Regular';
 }
 
+.Post > p{
+    margin: 0;
+}
+
 .Subreddit{
     margin-left: 20px;
-    font-size: 1.3vw;
+    position: relative;
+    left: 0;
     color: #00C68F;
 }
 
+.BigPost .Subreddit,
+.MediumPost .Subreddit{    
+    font-size: 1.3vmax;
+}
+
+.SmallPost{
+    font-size: 1vmax;
+}
+
 .Author{
-    font-size: 1vw;
     color: #aaa;
     margin-left: 2em;
+}
+
+.BigPost .Author,
+.MediumPost .Author{
+    font-size: 1vmax;
+}
+
+.SmallPost{
+    font-size: 0.8vw;
 }
 
 .PostTitle{
     margin-top: 0;
     margin-left: 20px;
-    font-size: 2vw;
-    max-width: 80%;
     color: black;
 }
 
-.Content{
-    margin-left: 20px;
+.BigPost .PostTitle{
+    font-size: 2vmax;
+    max-width: 90%;
+}
+
+
+.MediumPost .PostTitle{
+    max-width: 70%;
+}
+
+.SmallPost .PostTitle{
+    font-size: 1.5vmax;
+    max-width: 90%;
+}
+
+.BigPost .Content{
     position: relative;
     text-align: center;
     height: 50vh;
-    margin-bottom: 5vh;
+    margin-bottom: 3vmin;
 }
 
-.Content img{
+.MediumPost .Content{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 5vw;
+    top: 50%;
+    margin-top: -3vmax;
+}
+
+.Thumbnail{
+    height: 8vmax;
+    width: auto;
+    box-shadow: 4px 4px 5px #707070;
+}
+
+.BigPost .Content img{
     height: 50vh;
     width: auto;
     max-width: 80%;
+    margin: 0;
+    box-shadow: 4px 4px 5px #707070;
 }
 
-.Content iframe{
+.BigPost .Content iframe{
     border: none;
     height: 100%;
     width: 60%;
     position: relative;
 }
 
+.SavePost{
+    position: absolute;
+    right: 0;
+    top: 1vmin;
+}
+
+.SavePost p{
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    font-size: 1.5vmax;
+    margin-right: 0.5em;
+    color: #ccc;
+}
+
+.SavePostButton{
+    position: relative;
+    cursor: pointer;
+    height: 3vmax;
+    width: 3vmax;
+    background: url('../../assets/Icons/save.png') no-repeat;
+    background-size: 50% 100%;
+    background-color: transparent;
+    border: transparent;
+    filter: grayscale(100%);
+}
+
+.Post .SavePost .Saved{
+    filter: grayscale(0%);
+}
+
+.SavePostButton:hover{
+    filter: grayscale(70%);
+}
+
 .PostDescription{
-    margin-left: 20px;
+    position: relative;
+    left: 20px;
     font-size: 1.5vw;
     max-width: 80%;
     color: black;
 }
 
 .PostLink{
+    position: relative;
+    top: 1vmin;
+    border-bottom: 1px solid #ccc;
+    padding-right: 5vmin;
     margin-left: 20px;
     color: blue;
     text-decoration: none;
-    font-size: 1vw;
+    font-size: 1vmax;
+}
+
+.MediumPost .PostLink{
+    max-width: 60%;
+    display: inline-block;
 }
 
 .PostLink:hover,
@@ -83,4 +178,18 @@
 
 .PostLink:focus{
     outline: 1px solid #ccc;
+}
+
+@media (orientation: portrait){
+    .BigPost .Content{
+        margin-bottom: 0;
+    }
+
+    .MediumPost .PostTitle{
+        max-width: 60%;
+    }
+
+    .Thumbnail{
+        max-width: 80px;
+    }
 }

@@ -13,5 +13,13 @@ export{
 export{
     fetchPosts,
     deletePosts,
-    setSubreddit
+    setSubreddit,
+    fetchPostsById
 }from './redditActions'
+
+export{
+    savePost,
+    deletePost,
+    fetchSavedPosts,
+    removeSavedPosts
+}from './firebaseActions'

@@ -3,6 +3,7 @@ import { updateObject } from '../utility';
 
 const initialState = {
     posts: [],
+    savedPosts: [],
     after: null,
     subreddit: null,
     loading: false,
@@ -42,9 +43,24 @@ const deletePosts = (state, action) => {
     })
 }
 
-const setSubreddit = (state, action) => {
+const fetchPostByIdStart = (state, action) => {
     return updateObject(state, {
-        subreddit: action.subreddit
+        loading: true
+    })
+}
+
+const fetchPostByIdSuccess = (state, action) => {
+    return updateObject(state, {
+        savedPosts: action.savedPosts,
+        loading: false,
+        error: null
+    })
+}
+
+const fetchPostByIdFail = (state, action) => {
+    return updateObject(state, {
+        error: action.error,
+        loading: false
     })
 }
 
@@ -54,9 +70,11 @@ const reducer = (state=initialState, action) => {
         case actionTypes.FETCH_POSTS_SUCCESS: return fetchPostsSuccess(state, action);
         case actionTypes.FETCH_POSTS_FAIL: return fetchPostsFail(state, action);
         case actionTypes.DELETE_POSTS: return deletePosts(state, action);
-        case actionTypes.SET_SUBREDDIT: return setSubreddit(state, action);
+        case actionTypes.FETCH_POST_BY_ID_START: return fetchPostByIdStart(state, action);
+        case actionTypes.FETCH_POST_BY_ID_SUCCESS: return fetchPostByIdSuccess(state, action);
+        case actionTypes.FETCH_POST_BY_ID_FAIL: return fetchPostByIdFail(state, action);
         default: return state;
-    };
+    }
 };
 
 export default reducer;

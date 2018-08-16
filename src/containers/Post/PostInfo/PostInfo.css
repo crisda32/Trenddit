@@ -1,0 +1,38 @@
+/*----FONTS----*/
+@font-face{
+    font-family: 'Brandone Grotesque Regular';
+    src: url('../../../assets/Fonts/Brandone/Brandon_reg.otf');
+    font-weight: normal;
+}
+
+.PostInfo{
+    margin-top: 0.5vmax;
+}
+
+.PostInfo table{
+    margin-left: 20px;
+}
+
+.PostInfo table td{
+    min-width: 2vmin;
+}
+
+.PostInfo img{
+    width: 1.5vmax;
+    height: 1.5vmax;    
+    margin: 0;
+}
+
+.PostInfo a{
+    color: #808080;
+    text-decoration: none;
+}
+
+.PostInfo p{
+    margin: 0;
+    padding: 0;
+    font-family: 'Brandone Grotesque Regular';
+    font-size: 3vmin;
+    color: #808080;
+    text-decoration: none;
+}

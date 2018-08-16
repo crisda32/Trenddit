@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import classes from './Toolbar.css';
+import viewItemClasses from '../ViewItems/ViewItem/ViewItem.css';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import ViewItems from '../ViewItems/ViewItems';
 import MyProfile from './MyProfile/MyProfile';
@@ -24,15 +25,7 @@ class toolbar extends Component {
     }
 
     filterByNewSubreddit = (event) => {
-        if (event.keyCode == 13) {
-            /*START OF ERROR TEST*/
-            console.log('[Previous Subreddit]: '+this.props.subreddit);
-            this.props.onSetSubreddit(this.state.subreddit);
-            console.log('[New Subreddit (fake)]: '+this.props.subreddit);
-            setTimeout(() => {
-                console.log('[New Subreddit (real)]:'+this.props.subreddit);
-            }, 1);
-            /*END OF ERROR TEST*/
+        if (event.keyCode === 13) {
             let newSubreddit = this.state.subreddit === "" ? "popular" : this.state.subreddit;
             this.props.onDeletePosts();
             this.props.onFetchPosts(newSubreddit, "");
@@ -44,17 +37,33 @@ class toolbar extends Component {
     }
 
     selectPredetView = () => {
-        document.getElementById('view-2').className = classes.Active;
+        document.getElementById('view-2').className += " " + classes.Active;
     }
 
     selectViewHandler = (e) => {
         const views = document.getElementsByClassName(classes.Active);
+        let initialClasses = [viewItemClasses.ViewItem];
         for (let i = 0; i < views.length; i++) {
-            views[i].className = "";
+            switch (views[i].id) {
+                case 'view-2':
+                    initialClasses.push(viewItemClasses.View_2);
+                    break;
+                case 'view-4':
+                    initialClasses.push(viewItemClasses.View_4);
+                    break;
+                case 'view-6':
+                    initialClasses.push(viewItemClasses.View_6);
+                    break;
+                default:
+                    initialClasses.push(viewItemClasses.View_2);
+                    break;
+            }
+
+            views[i].className = initialClasses.join(' ');
         }
 
         if (e.target.tagName === 'BUTTON') {
-            e.target.className = classes.Active;
+            e.target.className += " " + classes.Active;
             this.props.setViewMode(e.target.id);
         }
     }

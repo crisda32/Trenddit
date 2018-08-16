@@ -9,6 +9,7 @@ import Login from './containers/Login/Login';
 import Register from './containers/Register/Register';
 import * as actions from './store/actions/index';
 import Dashboard from './containers/Dashboard/Dashboard';
+import Profile from './containers/Profile/Profile'
 import Layout from './hoc/Layout/Layout';
 
 class App extends Component {
@@ -32,8 +33,7 @@ class App extends Component {
       ? routes = (
         <Layout>
           <Switch>
-            <Route path='/profile' render={() => <p>MyProfile</p>} />
-            <Route path='/posts/' render={() => <p>Post</p>} />
+            <Route path='/profile' component={Profile} />
             <Route exact path='/' component={Dashboard} />
             <Redirect to='/' />
           </Switch>
@@ -44,13 +44,13 @@ class App extends Component {
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
           <Route exact path='/' component={MainPage} />
-          <Route render={() => <p>Page not found!</p>} />
+          <Redirect to='/' />
         </Switch>
       );
 
     return (
       <div className={classes.App}>
-        <Loader hide={this.state.hideLoader} />
+        <Loader hide={this.state.hideLoader}/>
         {routes}
       </div>
     );
